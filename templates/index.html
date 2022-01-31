@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
     <title>Welcome to IssueFLIX!</title>
     <style>
         .modal {
@@ -39,40 +41,86 @@
         @-webkit-keyframes animatetop {
             from {top:-300px; opacity:0} 
             to {top:0; opacity:1}
-            }
+        }
 
         @keyframes animatetop {
             from {top:-300px; opacity:0}
             to {top:0; opacity:1}
-            }
+        }
         /* The Close Button */
         .close {
             color: white;
             float: right;
             font-size: 28px;
             font-weight: bold;
-            }
+        }
 
         .close:hover,
         .close:focus {
             color: #000;
             text-decoration: none;
             cursor: pointer;
-            }
+        }
         .modal-header {
             padding: 2px 16px;
             background-color: #5cb85c;
             color: white;
-            }
+        }
 
-        .modal-body {padding: 2px 16px;}
+        .modal-body {
+            padding: 2px 16px;
+        }
 
         .modal-footer {
             padding: 2px 16px;
             background-color: #5cb85c;
             color: white;
-            }
+        }
+        .validation-note {
+	        visibility: hidden;
+        }
+
+        .invalid-form input:invalid {
+	        border: 1px solid red;
+        }
+
+        .invalid-form input:invalid .validation-note {
+	        visibility: viaible;
+        }
     </style>
+    <script>
+        $(document).ready(function () {
+            $('#registerForm').validate({
+                rules: {
+                    username: {required:true, minlength:3, remote:"Validate"},
+                    password: "required",
+                    password_check: {required: true, equalTo: '#password'},
+                    nickname: {required: true}
+                },
+                messages: {
+                    username: {
+                        required: "Check your ID.",
+                        minlength: jQuery.format("Please enter your ID in at least {0} characters."),
+                    },
+                    password: "Check your password.",
+                    password_check: {
+                        requried: "Check your password.",
+                        equalTo: "Password is not the same."
+                    },
+                    nickname: {
+                        required: "Enter your nickname."
+                    }
+                },
+                submitHandler: function (frm) {
+                    frm.submit();
+                },
+                success: function(e) {
+
+                }
+            });
+            
+        });
+    </script>
     
 </head>
 
@@ -86,29 +134,29 @@
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-        <h2>Sign In</h2>
+        <h2>Sign Up</h2>
         </div>
         <div class="modal-body">
-            <form class="w3-container" action="/sign-up/" method="post">
+            <form id="registerForm" class="w3-container" action="/sign-up/" method="post">
                 {% csrf_token %}
                 <div>
                     <label>ID to use</label>
-                    <input class="w3-input" type="text" placeholder="username" name="username">
+                    <input class="w3-input" type="text" placeholder="username" name="username" id="username">
                 </div>
                 <div>
                     <label>Password to use</label>
-                    <input class="w3-input" type="password" placeholder="password" name="password">
+                    <input class="w3-input" type="password" placeholder="password" name="password" id="password">
                 </div>
                 <div>
                     <label>Check your password</label>
-                    <input class="w3-input" type="password" placeholder="password_check" name="password_check">    
+                    <input class="w3-input" type="password" placeholder="password_check" name="password_check" id="password_check">    
                 </div>
                 <div>
                     <label>Nickname to use</label>
-                    <input class="w3-input" type="text" placeholder="nickname" name="nickname">
+                    <input class="w3-input" type="text" placeholder="nickname" name="nickname" id="nickname">
                 </div>
                 <div>
-                    <button type="submit" class="w3-button w3-black">Submit</button>
+                    <button onclick={ validateForm } type="submit" class="w3-button w3-black">Submit</button>
                 </div>
             </form>
         </div>
@@ -134,6 +182,8 @@
                 modal.style.display = "none";
             }
         }
+
+        
     </script>
 </body>
 </html>
