@@ -11,6 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
     <title>Welcome to IssueFLIX!</title>
+
+    <!-- Modal Page CSS -->
     <style>
         .modal {
             display: none; /* Hidden by default */
@@ -76,18 +78,13 @@
             background-color: #5cb85c;
             color: white;
         }
-        .validation-note {
-	        visibility: hidden;
-        }
-
-        .invalid-form input:invalid {
-	        border: 1px solid red;
-        }
-
-        .invalid-form input:invalid .validation-note {
-	        visibility: viaible;
+        
+        input:invalid {
+            border-color: red;
         }
     </style>
+
+    <!-- jQuery Validation Check -->
     <script>
         $(document).ready(function () {
             $('#registerForm').validate({
@@ -124,49 +121,72 @@
     
 </head>
 
-<body>
-    <h2>IssueFLIX</h2>
+<body style="background-color: #9b59b6; display: flex; align-items: center; justify-content: center; height: auto; min-height: 90vh; margin: 0">
+    <div class="container" style="background-color: #fff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); width: 380px; max-width: 100%;">
+        <div class="header" style="background-color: #fff; border-bottom: 1px solid #f0f0f0; padding: 20px 40px; overflow: hidden;">
+            <h2>IssueFLIX</h2>
 
-    <button id="myBtn">Sign In</button>
+            <!-- Signup Form -->
+            <button id="myBtn">Sign Up</button>
+            <div id="myModal" class="modal">
 
-    <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                    <h2>Sign Up</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registerForm" class="w3-container" action="/sign-up/" method="post">
+                            {% csrf_token %}
+                            <div>
+                                <label>ID to use</label>
+                                <input class="w3-input" type="text" placeholder="username" name="username" id="username">
+                            </div>
+                            <div>
+                                <label>Password to use</label>
+                                <input class="w3-input" type="password" placeholder="password" name="password" id="password">
+                            </div>
+                            <div>
+                                <label>Check your password</label>
+                                <input class="w3-input" type="password" placeholder="password_check" name="password_check" id="password_check">    
+                            </div>
+                            <div>
+                                <label>Nickname to use</label>
+                                <input class="w3-input" type="text" placeholder="nickname" name="nickname" id="nickname">
+                            </div>
+                            <button onclick={ validateForm } type="submit" class="w3-button w3-black">Submit</button>
 
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-        <h2>Sign Up</h2>
-        </div>
-        <div class="modal-body">
-            <form id="registerForm" class="w3-container" action="/sign-up/" method="post">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <h3>Modal Footer</h3>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Login Form -->
+            <div class="header" >
+                <h2 style="margin: 0;">Login</h2>
+            </div>
+            <form action="/sign-in/" method="post" id="form" class="form" style="padding: 30px 40px;">
                 {% csrf_token %}
-                <div>
-                    <label>ID to use</label>
-                    <input class="w3-input" type="text" placeholder="username" name="username" id="username">
+                <div class="form-control" style="margin-bottom: 10px; padding-bottom: 20px; position: relative;" >
+                    <label style="display: inline-blick; margin-bottom: 5px;">Your ID</label>
+                    <input type="text" placeholder="id" id="username" name="username" style="border: 2px solid #f0f0f0; border-radius: 4px; display: block;">
+                    <small style="visibility: hidden; position: absolute; bottom: 0; left: 0;">Error Message</small>
                 </div>
-                <div>
-                    <label>Password to use</label>
-                    <input class="w3-input" type="password" placeholder="password" name="password" id="password">
+                    <label style="display: inline-blick; margin-bottom: 5px;">Your Password</label>
+                    <input type="password" placeholder="password" id="password" name="password" style="border: 2px solid #f0f0f0; border-radius: 4px; display: block;">
+                    <small style="visibility: hidden; position: absolute; bottom: 0; left: 0;">Error Message</small>
                 </div>
-                <div>
-                    <label>Check your password</label>
-                    <input class="w3-input" type="password" placeholder="password_check" name="password_check" id="password_check">    
-                </div>
-                <div>
-                    <label>Nickname to use</label>
-                    <input class="w3-input" type="text" placeholder="nickname" name="nickname" id="nickname">
-                </div>
-                <div>
-                    <button onclick={ validateForm } type="submit" class="w3-button w3-black">Submit</button>
-                </div>
+                <button type="submit" style="background-color: #8e44ad; border: 2px solid #8e44ad; border-radius: 4px; color: #fff; display: block; padding: 10px; width: 100%;">Submit</button>
             </form>
-        </div>
-        <div class="modal-footer">
-            <h3>Modal Footer</h3>
+            
         </div>
     </div>
-
-    </div>
-
+        
+    
+    <!-- Modal Javascript -->
     <script>
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("myBtn");
@@ -183,7 +203,6 @@
             }
         }
 
-        
     </script>
 </body>
 </html>
