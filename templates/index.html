@@ -11,122 +11,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
     <title>Welcome to IssueFLIX!</title>
-
-    <!-- Modal Page CSS -->
-    <style>
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-        .modal-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            border: 1px solid #888;
-            width: 80%;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-            -webkit-animation-name: animatetop;
-            -webkit-animation-duration: 0.4s;
-            animation-name: animatetop;
-            animation-duration: 0.4s
-        }
-        @-webkit-keyframes animatetop {
-            from {top:-300px; opacity:0} 
-            to {top:0; opacity:1}
-        }
-
-        @keyframes animatetop {
-            from {top:-300px; opacity:0}
-            to {top:0; opacity:1}
-        }
-        /* The Close Button */
-        .close {
-            color: white;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .modal-header {
-            padding: 2px 16px;
-            background-color: #5cb85c;
-            color: white;
-        }
-
-        .modal-body {
-            padding: 2px 16px;
-        }
-
-        .modal-footer {
-            padding: 2px 16px;
-            background-color: #5cb85c;
-            color: white;
-        }
-        
-        input:invalid {
-            border-color: red;
-        }
-    </style>
-
     <!-- jQuery Validation Check -->
-    <script>
-        $(document).ready(function () {
-            $('#registerForm').validate({
-                rules: {
-                    username: {required:true, minlength:3},
-                    password: "required",
-                    password_check: {required: true, equalTo: '#password'},
-                    nickname: {required: true}
-                },
-                messages: {
-                    username: {
-                        required: "Check your ID.",
-                        minlength: jQuery.format("Please enter your ID in at least {0} characters."),
-                    },
-                    password: "Check your password.",
-                    password_check: {
-                        requried: "Check your password.",
-                        equalTo: "Password is not the same."
-                    },
-                    nickname: {
-                        required: "Enter your nickname."
-                    }
-                },
-                submitHandler: function (frm) {
-                    frm.submit();
-                },
-                success: function(e) {
-
-                }
-            });
-            
-        });
-    </script>
+    <script defer src="{% static 'js/validation.js' %}"></script>
     
 </head>
 
-<body style="background-color: #9b59b6; display: flex; align-items: center; justify-content: center; height: auto; min-height: 90vh; margin: 0">
-    <div class="container" style="background-color: #fff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); width: 380px; max-width: 100%;">
-        <div class="header" style="background-color: #fff; border-bottom: 1px solid #f0f0f0; padding: 20px 40px; overflow: hidden;">
-            <h2>IssueFLIX</h2>
-
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Login</h2>
+            <form action="/sign-in/" method="post" id="form" class="form">
+                {% csrf_token %}
+                <div class="form-control">
+                    <label>Your ID</label>
+                    <input type="text" placeholder="id" id="username" name="username">
+                    <small>Error Message</small>
+                
+                    <label>Your Password</label>
+                    <input type="password" placeholder="password" id="password" name="password">
+                    <small>Error Message</small>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
             <!-- Signup Form -->
+            <p>oh, Don't you have account?</p>
             <button id="myBtn">Sign Up</button>
             <div id="myModal" class="modal">
 
@@ -163,46 +71,12 @@
                     </div>
                 </div>
             </div>
-    
-            <!-- Login Form -->
-            <div class="header" >
-                <h2 style="margin: 0;">Login</h2>
-            </div>
-            <form action="/sign-in/" method="post" id="form" class="form" style="padding: 30px 40px;">
-                {% csrf_token %}
-                <div class="form-control" style="margin-bottom: 10px; padding-bottom: 20px; position: relative;" >
-                    <label style="display: inline-blick; margin-bottom: 5px;">Your ID</label>
-                    <input type="text" placeholder="id" id="username" name="username" style="border: 2px solid #f0f0f0; border-radius: 4px; display: block;">
-                    <small style="visibility: hidden; position: absolute; bottom: 0; left: 0;">Error Message</small>
-                </div>
-                    <label style="display: inline-blick; margin-bottom: 5px;">Your Password</label>
-                    <input type="password" placeholder="password" id="password" name="password" style="border: 2px solid #f0f0f0; border-radius: 4px; display: block;">
-                    <small style="visibility: hidden; position: absolute; bottom: 0; left: 0;">Error Message</small>
-                </div>
-                <button type="submit" style="background-color: #8e44ad; border: 2px solid #8e44ad; border-radius: 4px; color: #fff; display: block; padding: 10px; width: 100%;">Submit</button>
-            </form>
             
         </div>
     </div>
         
     
     <!-- Modal Javascript -->
-    <script>
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("myBtn");
-        var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-    </script>
+    <script src="{% static 'js/modal.js' %}"></script>
 </body>
 </html>
