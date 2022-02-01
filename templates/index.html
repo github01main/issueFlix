@@ -89,7 +89,7 @@
         $(document).ready(function () {
             $('#registerForm').validate({
                 rules: {
-                    username: {required:true, minlength:3, remote:"Validate"},
+                    username: {required:true, minlength:3},
                     password: "required",
                     password_check: {required: true, equalTo: '#password'},
                     nickname: {required: true}
