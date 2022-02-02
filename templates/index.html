@@ -18,8 +18,8 @@
 
 <body>
     <div class="container">
-        <div class="header">
-            <h2>Login</h2>
+        <div class="index-header">
+            <img src="{% static 'image/issueFLIX.PNG' %}" alt="" style="width: 300px; height: 300px;">
             <form action="/sign-in/" method="post" id="form" class="form">
                 {% csrf_token %}
                 <div class="form-control">
@@ -33,7 +33,9 @@
                 </div>
                 <button type="submit">Submit</button>
             </form>
-            <!-- Signup Form -->
+        </div>
+        <!-- Signup Form -->
+        <div class="index-body">
             <p>oh, Don't you have account?</p>
             <button id="myBtn">Sign Up</button>
             <div id="myModal" class="modal">
@@ -71,8 +73,8 @@
                     </div>
                 </div>
             </div>
-            
         </div>
+        
     </div>
         
     

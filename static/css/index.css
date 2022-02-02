@@ -1,16 +1,19 @@
 .container {
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   width: 380px;
   max-width: 100%;
 }
 
-.header {
+.index-header {
   background-color: #fff;
   border-bottom: 1px solid #f0f0f0;
   padding: 20px 40px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header h2 {
@@ -53,4 +56,20 @@
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+.index-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.index-body button {
+  background-color: #8e44ad;
+  border: 2px solid #8e44ad;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
 }
