@@ -57,6 +57,7 @@ function signup_validate() {
         document.getElementById('nickname').style.borderColor = 'green';
         document.getElementById('nicknameError').style.color = 'green';
         document.getElementById('nicknameError').innerHTML = "Good!";
+        status = true;
     }
 
     return status;

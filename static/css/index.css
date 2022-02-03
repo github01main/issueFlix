@@ -51,20 +51,13 @@
   display: block;
 }
 
-.form-control small {
-  visibility: hidden;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
 .index-body {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.index-body button {
+.index-body #myBtn {
   background-color: #8e44ad;
   border: 2px solid #8e44ad;
   border-radius: 4px;
