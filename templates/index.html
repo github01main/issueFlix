@@ -6,10 +6,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- w3 school library -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- css file path -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jQuery Validation -->
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
     <title>Welcome to IssueFLIX!</title>
 
@@ -17,19 +22,19 @@
 
 <body>
     <div class="container">
+        <!-- Signin Form -->
         <div class="index-header">
-            <img src="{% static 'image/issueFLIX.PNG' %}" alt="" style="width: 300px; height: 300px;">
+            <!-- <img src="{% static 'image/issueFLIX.PNG' %}" alt="logo" style="width: 300px; height: 300px;"> -->
+            <p>Access to your profile</p>
             <form action="/sign-in/" method="post" id="form" class="form">
                 {% csrf_token %}
                 <div class="form-control">
                     <div>
-                        <label>Your ID</label>
-                        <input type="text" placeholder="id" id="signin_username" name="signin_username" required>
+                        <input type="text" placeholder="Your ID" id="signin_username" name="signin_username" required>
                         <span id="login_nameError"></span>
                     </div>
                     <div>
-                        <label>Your Password</label>
-                        <input type="password" placeholder="password" id="signin_password" name="signin_password"
+                        <input type="password" placeholder="Your Password" id="signin_password" name="signin_password"
                             required>
                         <span id="login_passwordError"></span>
                     </div>
@@ -49,34 +54,34 @@
                         <h2>Sign Up</h2>
                     </div>
                     <div class="modal-body">
-                        <form onsubmit="return signup_validate()" name="test" id="registerForm" class="w3-container"
-                            action="/sign-up/" method="post">
+                        <form name="test" id="registerForm" class="w3-container" action="/sign-up/" method="post">
                             {% csrf_token %}
                             <div class="modal-signup-form">
                                 <label>ID to use</label>
-                                <input class="w3-input" type="text" placeholder="username" name="username"
-                                    id="username">
+                                <input class="w3-input" type="text" placeholder="username" name="username" id="username"
+                                    required>
                                 <span id="nameError"></span>
                             </div>
                             <div class="modal-signup-form">
                                 <label>Password to use</label>
                                 <input class="w3-input" type="password" placeholder="password" name="password"
-                                    id="password">
+                                    id="password" required>
                                 <span id="passwordError"></span>
                             </div>
                             <div class="modal-signup-form">
                                 <label>Check your password</label>
                                 <input class="w3-input" type="password" placeholder="password_check"
-                                    name="password_check" id="password_check">
+                                    name="password_check" id="password_check" required>
                                 <span id="password_checkError"></span>
                             </div>
                             <div class="modal-signup-form">
                                 <label>Nickname to use</label>
-                                <input class="w3-input" type="text" placeholder="nickname" name="nickname"
-                                    id="nickname">
+                                <input class="w3-input" type="text" placeholder="nickname" name="nickname" id="nickname"
+                                    required>
                                 <span id="nicknameError"></span>
                             </div>
-                            <button type="submit" class="w3-button w3-border w3-block w3-black">Submit</button>
+                            <button onclick="signup_validate()" type="submit"
+                                class="w3-button w3-border w3-block w3-black">Submit</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -87,7 +92,6 @@
         </div>
 
     </div>
-
 
     <!-- Javascript -->
     <script src="{% static 'js/modal.js' %}"></script>

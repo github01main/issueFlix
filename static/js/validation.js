@@ -23,7 +23,7 @@ function signup_validate() {
         document.getElementById('password').style.borderColor = 'red';
         document.getElementById('passwordError').style.color = 'red';
         document.getElementById('passwordError').innerHTML = "Don't do empty box.";
-        statis = false;
+        status = false;
 
     } else {
         document.getElementById('password').style.borderColor = 'green';
@@ -49,7 +49,7 @@ function signup_validate() {
         document.getElementById('password_check').style.borderColor = 'green';
         document.getElementById('password_checkError').style.color = 'green';
         document.getElementById('password_checkError').innerHTML = "Good!";
-        statis = true;
+        status = true;
     }
 
     // empty nickname case
@@ -78,6 +78,10 @@ function signin_validate() {
         document.getElementById('login_nameError').style.color = 'red';
         document.getElementById('login_nameError').innerHTML = "Don't do empty box.";
         status = false;
+    } else {
+        document.getElementById('signin_username').style.borderColor = 'green';
+        document.getElementById('login_nameError').style.color = 'green';
+        document.getElementById('login_nameError').innerHTML = "Good!";
     }
 
     if (password == '') {
