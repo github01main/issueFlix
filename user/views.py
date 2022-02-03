@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from user.models import UserModel
 from django.contrib import messages
+from django.contrib import auth
 
 def start(request):
     return render(request, 'index.html')
@@ -13,7 +14,7 @@ def sign_up(request):
 
         exist_user = UserModel.objects.filter(username=username)
         if exist_user:
-            return render(request, 'index.html', {'error' : '사용자가 존재합니다.'}) 
+            return redirect('sign-up/', {'error': '아이디 존재'})
         else:
             new_user = UserModel()
             new_user.username = username
@@ -22,6 +23,8 @@ def sign_up(request):
             new_user.save()
         
         return redirect('/')
+    elif request.method == "GET": 
+        return render(request, 'index.html')
 
 def sign_in(request):
 
@@ -34,12 +37,6 @@ def sign_in(request):
         if me.password == password:
             request.session['user'] = me.username
             return render(request, 'main.html')
-
-        if me is None:
-            messages.info(request, '아이디가 존재합니다.')
-
-        elif me.password != password:
-            messages.info(request, '비밀번호가 다릅니다.')
         
-        elif username == '' or password == '':
-            messages.info(request, '공백이 있습니다.')
+        if username == '' or password == '':
+            return render(request, 'index.html')

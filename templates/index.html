@@ -11,8 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
     <title>Welcome to IssueFLIX!</title>
-    <!-- jQuery Validation Check -->
-    <script defer src="{% static 'js/validation.js' %}"></script>
     
 </head>
 
@@ -24,17 +22,17 @@
                 {% csrf_token %}
                 <div class="form-control">
                     <label>Your ID</label>
-                    <input type="text" placeholder="id" id="username" name="username">
+                    <input type="text" placeholder="id" id="tusername" name="tusername">
                     <small>Error Message</small>
                 
                     <label>Your Password</label>
-                    <input type="password" placeholder="password" id="password" name="password">
+                    <input type="password" placeholder="password" id="tpassword" name="tpassword">
                     <small>Error Message</small>
                 </div>
                 <button type="submit">Submit</button>
             </form>
         </div>
-        <!-- Signup Form -->
+        <!-- Signup Form / Modal-->
         <div class="index-body">
             <p>oh, Don't you have account?</p>
             <button id="myBtn">Sign Up</button>
@@ -46,25 +44,29 @@
                     <h2>Sign Up</h2>
                     </div>
                     <div class="modal-body">
-                        <form id="registerForm" class="w3-container" action="/sign-up/" method="post">
+                        <form onsubmit="return validate()" name="test" id="registerForm" class="w3-container" action="/sign-up/" method="post">
                             {% csrf_token %}
                             <div>
                                 <label>ID to use</label>
                                 <input class="w3-input" type="text" placeholder="username" name="username" id="username">
+                                <span id="nameError"></span>
                             </div>
                             <div>
                                 <label>Password to use</label>
                                 <input class="w3-input" type="password" placeholder="password" name="password" id="password">
+                                <span id="passwordError"></span>
                             </div>
                             <div>
                                 <label>Check your password</label>
                                 <input class="w3-input" type="password" placeholder="password_check" name="password_check" id="password_check">    
+                                <span id="password_checkError"></span>
                             </div>
                             <div>
                                 <label>Nickname to use</label>
                                 <input class="w3-input" type="text" placeholder="nickname" name="nickname" id="nickname">
+                                <span id="nicknameError"></span>
                             </div>
-                            <button onclick={ validateForm } type="submit" class="w3-button w3-black">Submit</button>
+                            <button type="submit" class="w3-button w3-black">Submit</button>
 
                         </form>
                     </div>
@@ -78,7 +80,8 @@
     </div>
         
     
-    <!-- Modal Javascript -->
+    <!-- Javascript -->
     <script src="{% static 'js/modal.js' %}"></script>
+    <script src="{% static 'js/validation.js' %}"></script>
 </body>
 </html>
