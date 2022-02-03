@@ -18,6 +18,7 @@
   padding: 0;
   border: 1px solid #888;
   width: 80%;
+  max-width: 500px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -61,16 +62,40 @@
 }
 .modal-header {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: gray;
   color: white;
 }
 
-.modal-body {
-  padding: 2px 16px;
+.modal-body form .modal-signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 17px 0;
+}
+
+.modal-body form .modal-signup-form > label {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.modal-body form .modal-signup-form > input {
+  max-width: 350px;
+  width: 100%;
+}
+
+.modal-body form > button {
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.modal-body .w3-button {
+  display: flex;
+  justify-content: center;
 }
 
 .modal-footer {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: gray;
   color: white;
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="kr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
     <title>Welcome to IssueFLIX!</title>
-    
+
 </head>
 
 <body>
@@ -21,13 +22,19 @@
             <form action="/sign-in/" method="post" id="form" class="form">
                 {% csrf_token %}
                 <div class="form-control">
-                    <label>Your ID</label>
-                    <input type="text" placeholder="id" id="tusername" name="tusername">
-                
-                    <label>Your Password</label>
-                    <input type="password" placeholder="password" id="tpassword" name="tpassword">
+                    <div>
+                        <label>Your ID</label>
+                        <input type="text" placeholder="id" id="signin_username" name="signin_username" required>
+                        <span id="login_nameError"></span>
+                    </div>
+                    <div>
+                        <label>Your Password</label>
+                        <input type="password" placeholder="password" id="signin_password" name="signin_password"
+                            required>
+                        <span id="login_passwordError"></span>
+                    </div>
                 </div>
-                <button type="submit">Submit</button>
+                <button onclick="signin_validate()" type="submit">Submit</button>
             </form>
         </div>
         <!-- Signup Form / Modal-->
@@ -39,47 +46,52 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <span class="close">&times;</span>
-                    <h2>Sign Up</h2>
+                        <h2>Sign Up</h2>
                     </div>
                     <div class="modal-body">
-                        <form onsubmit="return signup_validate()" name="test" id="registerForm" class="w3-container" action="/sign-up/" method="post">
+                        <form onsubmit="return signup_validate()" name="test" id="registerForm" class="w3-container"
+                            action="/sign-up/" method="post">
                             {% csrf_token %}
-                            <div>
+                            <div class="modal-signup-form">
                                 <label>ID to use</label>
-                                <input class="w3-input" type="text" placeholder="username" name="username" id="username">
+                                <input class="w3-input" type="text" placeholder="username" name="username"
+                                    id="username">
                                 <span id="nameError"></span>
                             </div>
-                            <div>
+                            <div class="modal-signup-form">
                                 <label>Password to use</label>
-                                <input class="w3-input" type="password" placeholder="password" name="password" id="password">
+                                <input class="w3-input" type="password" placeholder="password" name="password"
+                                    id="password">
                                 <span id="passwordError"></span>
                             </div>
-                            <div>
+                            <div class="modal-signup-form">
                                 <label>Check your password</label>
-                                <input class="w3-input" type="password" placeholder="password_check" name="password_check" id="password_check">    
+                                <input class="w3-input" type="password" placeholder="password_check"
+                                    name="password_check" id="password_check">
                                 <span id="password_checkError"></span>
                             </div>
-                            <div>
+                            <div class="modal-signup-form">
                                 <label>Nickname to use</label>
-                                <input class="w3-input" type="text" placeholder="nickname" name="nickname" id="nickname">
+                                <input class="w3-input" type="text" placeholder="nickname" name="nickname"
+                                    id="nickname">
                                 <span id="nicknameError"></span>
                             </div>
-                            <button type="submit" class="w3-button w3-black">Submit</button>
-
+                            <button type="submit" class="w3-button w3-border w3-block w3-black">Submit</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <h3>Modal Footer</h3>
+                        <h3>We only need simple information</h3>
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
-        
-    
+
+
     <!-- Javascript -->
     <script src="{% static 'js/modal.js' %}"></script>
     <script src="{% static 'js/validation.js' %}"></script>
 </body>
+
 </html>

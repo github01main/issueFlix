@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from user.models import UserModel
-from django.contrib import messages
 from django.contrib import auth
 
 def start(request):
@@ -29,14 +28,11 @@ def sign_up(request):
 def sign_in(request):
 
     if request.method == "POST":
-        username = request.POST.get('username', None)
-        password = request.POST.get('password', None)
+        username = request.POST.get('signin_username', None)
+        password = request.POST.get('signin_password', None)
 
         me = UserModel.objects.get(username=username)
 
         if me.password == password:
             request.session['user'] = me.username
             return render(request, 'main.html')
-        
-        if username == '' or password == '':
-            return render(request, 'index.html')
