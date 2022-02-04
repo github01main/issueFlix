@@ -3,7 +3,7 @@ from user.models import UserModel
 from django.contrib import auth
 
 def start(request):
-    return render(request, 'index.html')
+    return render(request, 'base.html')
 
 def sign_up(request):
     if request.method == "POST":

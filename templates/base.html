@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="kr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IssueFLIX</title>
+    <!-- w3 school library -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- css file path -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jQuery Validation -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
+    <title>Welcome to IssueFLIX!</title>
+
 </head>
+
 <body>
-    
+    <div class="topnav" id="myTopnav">
+        <a href="#" class="active">Home</a>
+        <a href="#">Art</a>
+        <a href="#">Feedback</a>
+        <a href="#">About</a>
+        <a href="#">Search</a>
+        <a href="#">SignIn</a>
+        <a href="javascript:void(0);" class="icon" onclick="navbarFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+
+    </div>
+    <script src="{% static 'js/navbar.js' %}"></script>
 </body>
+
 </html>
