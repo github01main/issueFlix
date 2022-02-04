@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from user.models import UserModel
 from django.contrib import auth
 
-def start(request):
-    return render(request, 'base.html')
+def main(request):
+    return render(request, 'main.html')
 
 def sign_up(request):
     if request.method == "POST":
@@ -36,3 +36,6 @@ def sign_in(request):
         if me.password == password:
             request.session['user'] = me.username
             return render(request, 'main.html')
+            
+    elif request.method == "GET":
+        return render(request, 'signin.html')

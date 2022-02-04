@@ -1,7 +1,7 @@
 .topnav {
     width: 100%;
-    position: fixed;
     overflow: auto;
+    position: fixed;
     background-color: #333;
 }
 

@@ -1,9 +1,10 @@
-@import "index.css";
+@import "signin.css";
 @import "modal.css";
 @import "navbar.css";
 
 body {
   width: 100%;
   display: flex;
+  justify-content: center;
   height: auto;
 }
