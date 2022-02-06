@@ -1,8 +1,10 @@
+from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 from user.models import UserModel
 from django.contrib import auth
+from django.contrib.auth import get_user_model
 
-def main(request):
+def start(request):
     return render(request, 'main.html')
 
 def sign_up(request):
@@ -11,31 +13,35 @@ def sign_up(request):
         password = request.POST.get('password', '')
         nickname = request.POST.get('nickname', '')
 
-        exist_user = UserModel.objects.filter(username=username)
-        if exist_user:
-            return redirect('sign-up/', {'error': '아이디 존재'})
-        else:
-            new_user = UserModel()
-            new_user.username = username
-            new_user.password = password
-            new_user.nickname = nickname
-            new_user.save()
+        exist_user = get_user_model().objects.filter(username=username)
         
-        return redirect('/')
+        if exist_user:
+            return render(request, 'signin.html')
+        else:
+            UserModel.objects.create_user(username=username, password=password, nickname=nickname)
+            return redirect('/sign-in')
+
     elif request.method == "GET": 
-        return render(request, 'index.html')
+        return render(request, 'signin.html')
 
 def sign_in(request):
+    if request.method == "GET":
+        return render(request, 'signin.html')
 
-    if request.method == "POST":
+    elif request.method == "POST":
         username = request.POST.get('signin_username', None)
         password = request.POST.get('signin_password', None)
 
-        me = UserModel.objects.get(username=username)
-
-        if me.password == password:
+        # Not used authenticate
+        me = UserModel.objects.get(username=username)  # 사용자 불러오기
+        if me.password == password:  # 저장된 사용자의 패스워드와 입력받은 패스워드 비교
             request.session['user'] = me.username
-            return render(request, 'main.html')
-            
-    elif request.method == "GET":
-        return render(request, 'signin.html')
+            return redirect('/main')
+
+        # Used authenticate > error
+        # me = auth.authenticate(request, username=username, password=password)
+        # if me is not None:
+        #     auth.login(request, me)
+        #     return redirect('/main')
+        # else:
+        #     return redirect('/sign-in')

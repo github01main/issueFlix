@@ -3,6 +3,7 @@
     overflow: auto;
     position: fixed;
     background-color: #333;
+    margin-bottom: 70px;
 }
 
 .topnav a {
