@@ -3,6 +3,17 @@ function signup_validate() {
     var password = document.getElementById("password").value;
     var password_check = document.getElementById("password_check").value;
     var nickname = document.getElementById("nickname").value;
+
+    // IDReg
+    var checkName = username.search(/[0-9]/g);
+    var checkNameEng = username.search(/[a-z]/ig);
+
+    // PasswordReg / Check if there are English and numbers
+    var checkNumber = password.search(/[0-9]/g);
+    var checkEnglish = password.search(/[a-z]/ig);
+    var checkSpec = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/ig);
+
+    // Qualification
     var status = false;
 
     // empty username case
@@ -11,21 +22,53 @@ function signup_validate() {
         document.getElementById("nameError").style.color = "red";
         document.getElementById("nameError").innerHTML = "Don't do empty box.";
         status = false;
-    } else {
+    }
+    else if (username.length < 3 || username.length > 20) {
+        document.getElementById("username").style.borderColor = "red";
+        document.getElementById("nameError").style.color = "red";
+        document.getElementById("nameError").innerHTML = "ID is too short or too long.";
+        status = false;
+    }
+
+    else if (checkName < 0 || checkNameEng < 0) {
+        document.getElementById("username").style.borderColor = "red";
+        document.getElementById("nameError").style.color = "red";
+        document.getElementById("nameError").innerHTML = "English and numbers are essential.";
+        status = false;
+    }
+
+    else {
         document.getElementById("username").style.borderColor = "green";
         document.getElementById("nameError").style.color = "green";
         document.getElementById("nameError").innerHTML = "Good!";
         status = true;
     }
 
-    // empty password case
+
+    // Password Validation
+    // Empty password case
     if (password == '') {
         document.getElementById('password').style.borderColor = 'red';
         document.getElementById('passwordError').style.color = 'red';
         document.getElementById('passwordError').innerHTML = "Don't do empty box.";
         status = false;
-
-    } else {
+    }
+    // Password length
+    else if (password.length < 8 || password.length > 20) {
+        document.getElementById('password').style.borderColor = 'red';
+        document.getElementById('passwordError').style.color = 'red';
+        document.getElementById('passwordError').innerHTML = "Password is more than 9 and less than 20.";
+        status = false;
+    }
+    // Password qualification(English, number, and Special characters)
+    else if (checkNumber < 0 || checkEnglish < 0 || checkSpec < 0) {
+        document.getElementById('password').style.borderColor = 'red';
+        document.getElementById('passwordError').style.color = 'red';
+        document.getElementById('passwordError').innerHTML = "Mix English, number and Special characters.";
+        status = false;
+    }
+    // Password Success
+    else {
         document.getElementById('password').style.borderColor = 'green';
         document.getElementById('passwordError').style.color = 'green';
         document.getElementById('passwordError').innerHTML = "Good!";
