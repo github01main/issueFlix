@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="error-container">
-    <h1>404 Page</h1>
+    <h1>404 Page error</h1>
     <p>Sorry, You can't access this page.</p>
+    <img src="{% static 'image/crying.jpeg' %}" alt="crying">
 </div>
 {% endblock %}

@@ -2,7 +2,8 @@
 @import "modal.css";
 @import "navbar.css";
 @import "main.css";
-@import "error.csS";
+@import "error.css";
+@import "developer.css";
 
 * {
   padding: 0;

@@ -44,6 +44,9 @@ def sign_in(request):
 def error(request):
     return render(request, 'error.html')
 
+def developer(request):
+    return render(request, 'developer.html')
+
 @login_required
 def logout(request):
     auth.logout(request)

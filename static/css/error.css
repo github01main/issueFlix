@@ -2,16 +2,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 200px;
+    margin-top: 150px;
     font-weight: bold;
 }
 
 .error-container h1 {
     font-size: 50px;
-    color: #fff;
+    color: #3DFF92;
 }
 
 .error-container p {
     font-size: 30px;
     color: #fff;
+    margin-bottom: 10px;
 }

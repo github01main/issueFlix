@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="about-container">
+    <div class="about-header">
+        <h2>About</h2>
+        <div class="header-greeting">
+            Hello, there! Welcome to IssueFLIX! This site is a site that informs issues around the world.<br>
+            Get new information by crawling Youtube in real time. Then, let's get started!
+        </div>
+    </div>
+    <div class="about-body">
+        <div class="issueflix_team">
+            <img src="{% static 'image/jsw.jpg' %}" alt="jsw">
+            <div class="explain">
+                <span>Siwook Cho</span>
+                <span>He was in charge of directing and three.js for this project.</span>
+            </div>
+        </div>
+        <div class="issueflix_team">
+            <img src="{% static 'image/jsw.jpg' %}" alt="hyw">
+            <div class="explain">
+                <span>Yongwoon Ha</span>
+                <span>He was in charge of crawling and back-end for this project.</span>
+            </div>
+        </div>
+        <div class="issueflix_team">
+            <img src="{% static 'image/csd.jpg' %}" alt="csd">
+            <div class="explain">
+                <span>Seongdae Choi</span>
+                <span>He was in charge of back-end and front-end for this project.</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
