@@ -2,6 +2,7 @@
 @import "modal.css";
 @import "navbar.css";
 @import "main.css";
+@import "error.csS";
 
 * {
   padding: 0;

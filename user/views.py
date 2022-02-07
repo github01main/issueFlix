@@ -40,6 +40,10 @@ def sign_in(request):
         else:
             return redirect('/sign-in')
 
+
+def error(request):
+    return render(request, 'error.html')
+
 @login_required
 def logout(request):
     auth.logout(request)
