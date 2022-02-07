@@ -1,4 +1,4 @@
-.container {
+.sign-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,7 +7,7 @@
   margin: 0;
 }
 
-.container .index-header {
+.sign-container .index-header {
   max-width: 720px;
   width: 100%;
   overflow: hidden;
@@ -17,12 +17,13 @@
   align-items: center;
 }
 
-.container .index-header > p {
+.sign-container .index-header > p {
+  margin-bottom: 30px;
   font-weight: bold;
-  font-size: 42px;
+  font-size: 40px;
 }
 
-.container .index-header .form > button {
+.sign-container .index-header .form > button {
   background-color: black;
   border: 2px solid gray;
   border-radius: 16px;
@@ -33,12 +34,12 @@
   margin-bottom: 30px;
 }
 
-.container .index-header .form .form-control {
+.sign-container .index-header .form .form-control {
   margin-bottom: 10px;
   padding-bottom: 20px;
 }
 
-.container .index-header .form .form-control input {
+.sign-container .index-header .form .form-control input {
   display: flex;
   border: 2px solid #f0f0f0;
   border-radius: 14px;
@@ -46,13 +47,13 @@
   margin-bottom: 10px;
 }
 
-.index-body {
+.sign-container .index-body {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.container .index-body #myBtn {
+.sign-container .index-body #myBtn {
   background-color: black;
   border: 2px solid gray;
   border-radius: 4px;

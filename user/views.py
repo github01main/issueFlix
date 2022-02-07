@@ -31,17 +31,10 @@ def sign_in(request):
     elif request.method == "POST":
         username = request.POST.get('signin_username', None)
         password = request.POST.get('signin_password', None)
-
-        # Not used authenticate
-        me = UserModel.objects.get(username=username)  # 사용자 불러오기
-        if me.password == password:  # 저장된 사용자의 패스워드와 입력받은 패스워드 비교
-            request.session['user'] = me.username
+        
+        me = auth.authenticate(request, username=username, password=password)
+        if me is not None:
+            auth.login(request, me)
             return redirect('/main')
-
-        # Used authenticate > error
-        # me = auth.authenticate(request, username=username, password=password)
-        # if me is not None:
-        #     auth.login(request, me)
-        #     return redirect('/main')
-        # else:
-        #     return redirect('/sign-in')
+        else:
+            return redirect('/sign-in')

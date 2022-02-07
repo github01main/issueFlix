@@ -6,12 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- w3 school library -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- css file path -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- jQuery Validation -->
@@ -21,22 +19,43 @@
 </head>
 
 <body>
-    <div class="topnav" id="myTopnav">
-        <a href="main/" onclick="test()" class="active" id="home">Home</a>
-        <a href="javascript:;" id="Art">Art</a>
-        <a href="#" id="Feedback">Feedback</a>
-        <a href="#" id="About">About</a>
-        <a href="#" id="Search">Search</a>
-        <a href="sign-in/" id="SignIn" onclick="javascript:;">SignIn</a>
-        <a href="javascript:void(0);" class="icon" onclick="navbarFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
 
+    <div class="container">
+        <div class="navbar">
+            <div class="menu">
+                <h3 class="logo">Issue<span>FLIX</span></h3>
+                <div class="sub-menu">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+
+        {% endblock %}
+        <div class="links">
+            <ul>
+              <li>
+                <a href="/main" style="--i: 0.05s;">Home</a>
+              </li>
+              <li>
+                <a href="#" style="--i: 0.1s;">Art</a>
+              </li>
+              <li>
+                <a href="#" style="--i: 0.15s;">Predictions</a>
+              </li>
+              <li>
+                <a href="#" style="--i: 0.2s;">Feedback</a>
+              </li>
+              <li>
+                <a href="#" style="--i: 0.25s;">About</a>
+              </li>
+              <li>
+                <a href="/sign-in" style="--i: 0.3s;">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
     </div>
-
-    {% block content %}
-
-    {% endblock %}
 
     <!-- Javascript -->
     <script src="{% static 'js/modal.js' %}"></script>

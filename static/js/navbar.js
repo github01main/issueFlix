@@ -1,12 +1,7 @@
-function navbarFunction() {
-    var x = document.getElementById('myTopnav')
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
-}
+// if sub-menu button is clicked.
+const sub_menu = document.querySelector(".sub-menu");
+const container = document.querySelector(".container");
 
-function test() {
-    return false;
-}
+sub_menu.addEventListener("click", () => {
+    container.classList.toggle("active");
+});
