@@ -9,6 +9,7 @@
 .error-container h1 {
     font-size: 50px;
     color: #3DFF92;
+    font-weight: bold;
 }
 
 .error-container p {

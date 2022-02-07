@@ -17,7 +17,7 @@ def sign_up(request):
         exist_user = get_user_model().objects.filter(username=username)
         
         if exist_user:
-            return render(request, 'signin.html')
+            return render(request, 'signin_not.html')
         else:
             UserModel.objects.create_user(username=username, password=password, nickname=nickname)
             return redirect('/sign-in')

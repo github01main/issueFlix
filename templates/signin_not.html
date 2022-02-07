@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="sign-error-container">
+    <h1>Oops! Sorry!</h1>
+    <p>This ID already exists.</p>
+    <button onclick="window.location.href='/sign-in'">Back to Login</button>
+</div>
+{% endblock %}
