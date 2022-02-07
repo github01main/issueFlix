@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- w3 school library -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- css file path -->
@@ -49,10 +51,17 @@
               <li>
                 <a href="#" style="--i: 0.25s;">About</a>
               </li>
-              <li>
-                <a href="/sign-in" style="--i: 0.3s;">Login</a>
-              </li>
+              {% if not user.is_authenticated %}
+                <li>
+                  <a href="/sign-in" style="--i: 0.3s;">Login</a>
+                </li>
+              {% else %}
+                <li>
+                  <a href="/logout" style="--i: 0.3s;">{{ user.username }} logout</a>
+                </li>
+              {% endif %}
             </ul>
+            
           </div>
         </div>
     </div>
@@ -61,6 +70,7 @@
     <script src="{% static 'js/modal.js' %}"></script>
     <script src="{% static 'js/validation.js' %}"></script>
     <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/logout.js' %}"></script>
 </body>
 
 </html>
