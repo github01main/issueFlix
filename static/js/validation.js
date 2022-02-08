@@ -137,7 +137,7 @@ function signin_validate() {
     return status;
 }
 
-// **** jQuery Validation Check ****
+// // **** jQuery Validation Check ****
 
 // $(document).ready(function () {
 //     $('#registerForm').validate({

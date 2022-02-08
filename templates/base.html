@@ -10,66 +10,73 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- css file path -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- jQuery Validation -->
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
-    <title>Welcome to IssueFLIX!</title>
+    <script>
+      {% comment %} var project_uv_img = "{% static 'images/uv_grid_opengl.jpg' %}" {% endcomment %}
+      var base_color = "{% static 'image/8k_earth_daymap.jpg' %}"
+    </script>
+
+    {% block extrahead %}
+      <script crossorigin defer type="module" src="{% static 'js/Earth.js' %}"></script>
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% endblock %}
+    
+    <title>Issueflix - World wide trend news site</title>
 
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="navbar">
-            <div class="menu">
-                <h3 class="logo">Issue<span>FLIX</span></h3>
-                <div class="sub-menu">
-                    <div class="bar"></div>
-                </div>
-            </div>
-        </div>
-        {% block content %}
-
-        {% endblock %}
-        <div class="links">
-            <ul>
-              <li>
-                <a href="/main" style="--i: 0.05s;">Home</a>
-              </li>
-              <li>
-                <a href="/error" style="--i: 0.1s;">Art</a>
-              </li>
-              <li>
-                <a href="/error" style="--i: 0.15s;">Predictions</a>
-              </li>
-              <li>
-                <a href="/error" style="--i: 0.2s;">Feedback</a>
-              </li>
-              <li>
-                <a href="/developer" style="--i: 0.25s;">Developer</a>
-              </li>
-              {% if not user.is_authenticated %}
-                <li>
-                  <a href="/sign-in" style="--i: 0.3s;">Login</a>
-                </li>
-              {% else %}
-                <li>
-                  <a href="/logout" style="--i: 0.3s;">{{ user.username }} logout</a>
-                </li>
-              {% endif %}
-            </ul>
-            
+  <div class="container">
+      <div class="navbar">
+          <div class="menu">
+              <h3 class="logo">Issue<span>FLIX</span></h3>
+              <div class="sub-menu">
+                  <div class="bar"></div>
+              </div>
           </div>
-        </div>
-    </div>
+      </div>
+      {% block content %}
 
-    <!-- Javascript -->
-    <script src="{% static 'js/modal.js' %}"></script>
-    <script src="{% static 'js/validation.js' %}"></script>
-    <script src="{% static 'js/navbar.js' %}"></script>
+      {% endblock %}
+      <div class="links">
+          <ul>
+            <li>
+              <a href="/main" style="--i: 0.05s;">Home</a>
+            </li>
+            <li>
+              <a href="/error" style="--i: 0.1s;">Art</a>
+            </li>
+            <li>
+              <a href="/error" style="--i: 0.15s;">Predictions</a>
+            </li>
+            <li>
+              <a href="/error" style="--i: 0.2s;">Feedback</a>
+            </li>
+            <li>
+              <a href="/developer" style="--i: 0.25s;">Developer</a>
+            </li>
+            {% if not user.is_authenticated %}
+              <li>
+                <a href="/sign-in" style="--i: 0.3s;">Login</a>
+              </li>
+            {% else %}
+              <li>
+                <a href="/logout" style="--i: 0.3s;">{{ user.username }} logout</a>
+              </li>
+            {% endif %}
+          </ul>
+          
+        </div>
+      </div>
+  </div>
+
+  <!-- Javascript -->
+  <script src="{% static 'js/modal.js' %}"></script>
+  <script src="{% static 'js/validation.js' %}"></script>
+  <script src="{% static 'js/navbar.js' %}"></script>
 </body>
 
 </html>
