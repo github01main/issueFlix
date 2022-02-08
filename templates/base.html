@@ -28,11 +28,46 @@
 
 </head>
 
+<script>
+    {#ajax의 post 방식에선 csrf를 아래와 같이 선언해주면 된다.#}
+    $.ajaxSetup({
+        headers: {"X-CSRFToken": '{{csrf_token}}'}
+    });
+
+    function show_news(countryname) {
+        $('#news-list').empty()
+
+        // {# 버튼을 누를 때 호출 되는 함수에서 value값이 맨 위만 받아왔다. 아이디값이 같아서인지는 모르겠지만 그래서 각 버튼에 있는 함수에 파라미터로 밸류를 지정해줌#}
+        let country_name = countryname
+
+        $.ajax({
+            type: "POST",
+            url: "country/",
+            data: {'country_name': country_name},
+            success: function (response) {
+                let rows = response
+                for (let i = 0; i < rows.length; i++) {
+                    let all_News = rows[i]
+
+                    let temp_html = `<div id="b1" class="containerTab">
+                                            <span class="closebtn">&times;</span>
+                                            <iframe width="350" height="150" src="${all_News['Link']}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            <p style="color: #fff; margin-left: 20px; width: 350px; font-size: 16px; font-weight: bold;">${all_News['Title']}</p>
+                                            <p style="color: #fff; margin-left: 20px; width: 350px; font-size: 12px;margin-bottom:10px;">Views - ${all_News['Views']}</p>
+                                        </div>`
+
+                    $('#news-list').append(temp_html)
+                }
+            }
+        });
+    }
+</script>
+
 <body>
   <div class="container">
       <div class="navbar">
           <div class="menu">
-              <h3 class="logo">Issue<span>FLIX</span></h3>
+              <a href="/"><h3 class="logo" onclick="">Issue<span>FLIX</span></h3></a>
               <div class="sub-menu">
                   <div class="bar"></div>
               </div>
@@ -41,10 +76,14 @@
       {% block content %}
 
       {% endblock %}
+      <div id="news-list">
+
+      </div>
+
       <div class="links">
           <ul>
             <li>
-              <a href="/main" style="--i: 0.05s;">Home</a>
+              <a href="/" style="--i: 0.05s;">Home</a>
             </li>
             <li>
               <a href="/error" style="--i: 0.1s;">Art</a>

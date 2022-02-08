@@ -80,12 +80,16 @@ class App{
         this._setupModel();
         this._setupControls();
         this._setupRaycaster();
+
         // Three.js 리사이징 가능 설정.
         window.onresize = this.resize.bind(this);
         this.resize();
         // Three.js 초당 프레임 마다 애니메이션 설정.
         requestAnimationFrame(this.render.bind(this));
+
+
     }
+
 
     // THREE.js 유저의 마우스를 통한 카메라 컨트롤러.
     _setupControls(){
@@ -287,23 +291,23 @@ class App{
                 switch (this._currentMesh.object)
                 {
                     case this._bbc_mesh:
-                        console.log("bbc news youtube top 5 trend 입니다.");
+                        show_news('EK');
                         break;
                     
                     case this._foxmesh:
-                        console.log("fox news youtube top 5 trend 입니다.");
+                        show_news('America');
                         break;
                     
                     case this._cctv_mesh:
-                        console.log("cctv news youtube top 5 trend 입니다.");
+                        show_news('China');
                         break;
 
                     case this._mbcmesh:
-                        console.log("mbc news youtube top 5 trend 입니다.");
+                        show_news('Korea');
                         break;
 
                     case this._nitteremesh:
-                        console.log("nittere news youtube top 5 trend 입니다.");
+                        show_news('Japan');
                         break;
                     
                     default:
